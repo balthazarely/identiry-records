@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { motion } from 'framer-motion';
 import { pageTransition } from '../animations/animation';
 import AlbumSlider from '../components/AlbumSlider';
-import { LowerPageContainer } from '../styles/pageElements';
+import { LowerPageContainer } from '../styles/PageElements';
 import AnotherSlider from '../components/AnotherSlider';
 
 export default function HomePage({ data }) {

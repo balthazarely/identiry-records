@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import MusicPlayer from '../components/MusicPlayer';
 import { artistPageTransition } from '../animations/animation';
-import { LowerPageContainer } from '../styles/pageElements';
+import { LowerPageContainer } from '../styles/PageElements';
 
 const AlbumGrid = styled(motion.div)`
   margin: 100px 10px;

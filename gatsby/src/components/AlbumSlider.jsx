@@ -7,7 +7,6 @@ import { useInView } from 'react-intersection-observer';
 
 const SliderContainer = styled(motion.div)`
   margin: 30px 10px;
-  height: 120%;
   overflow-y: hidden;
 `;
 
@@ -42,9 +41,31 @@ const ViewButton = styled(motion.button)`
 
 const AlbumList = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  min-width: 500px;
+  grid-template-columns: repeat(6, 1fr);
+  /* min-width: 500px; */
   gap: 1.5rem;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+`;
+
+const SectionTitle = styled(motion.h3)`
+  background: #ec4d37;
+  color: white;
+  padding: 2px 5px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: uppercase;
+  @media (max-width: 768px) {
+    padding: 2px 5px;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-left: 5px;
+  }
 `;
 
 const SingleRelease = styled(motion.div)`
@@ -56,18 +77,27 @@ const SingleRelease = styled(motion.div)`
     text-align: center;
     font-size: 1.4rem;
   }
-
   a {
     text-decoration: none;
+  }
+  @media (max-width: 768px) {
+    padding: 5px;
+    /* min-width: 200px; */
   }
 `;
 
 const ReleaseInfomation = styled(motion.div)`
   text-align: center;
   margin-top: 0.5rem;
-  h4 {
+  .artist {
     color: white;
     font-size: 14px;
+    font-weight: 500;
+  }
+  .release {
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
   }
 `;
 
@@ -165,7 +195,7 @@ export default function AlbumSlider({
             variants={titleAnimation}
             transition={{ type: 'spring', stiffness: 400, damping: 60 }}
           >
-            <h3>{sectionTitle}</h3>
+            <SectionTitle>{sectionTitle}</SectionTitle>
           </Title>
           {showSeeBtn && (
             <AniLink
@@ -208,7 +238,15 @@ export default function AlbumSlider({
                 </SingleRelease>
               </AnimatePresence>
               <ReleaseInfomation>
-                <motion.h4 variants={textMotion}>{release.name}</motion.h4>
+                <motion.h4 className="artist" variants={textMotion}>
+                  {release.name}
+                </motion.h4>
+                {release.artist &&
+                  release.artist.map((artist) => (
+                    <motion.h4 className="release" key={artist}>
+                      {artist.name}
+                    </motion.h4>
+                  ))}
               </ReleaseInfomation>
             </AniLink>
           ))}

@@ -5,12 +5,15 @@ import { pageTransition } from '../animations/animation';
 import AlbumSlider from '../components/AlbumSlider';
 import { LowerPageContainer } from '../styles/PageElements';
 import AnotherSlider from '../components/AnotherSlider';
+import Welcome from '../components/Welcome';
+import MailingList from '../components/MailingList';
 
 export default function HomePage({ data }) {
   const allCovers = data.allCovers.nodes;
   const newReleases = data.newReleases.nodes;
   const melodicTechno = data.newMelodicTechno.nodes;
   const deepHouse = data.newDeepHouse.nodes;
+  const trance = data.newTrance.nodes;
   const featuredArtists = data.featuredArtists.nodes;
 
   const myRef = useRef(null);
@@ -26,6 +29,7 @@ export default function HomePage({ data }) {
       >
         <AnotherSlider allCovers={allCovers} />
         <LowerPageContainer ref={myRef}>
+          <Welcome />
           <AlbumSlider
             allAlbums={featuredArtists}
             sectionTitle="Featured Artists"
@@ -45,12 +49,19 @@ export default function HomePage({ data }) {
             showSeeBtn
           />
           <AlbumSlider
+            allAlbums={trance}
+            sectionTitle="New Progressive Trance"
+            routeTo="releases"
+            showSeeBtn
+          />
+          <AlbumSlider
             allAlbums={deepHouse}
             sectionTitle="New Deep House"
             routeTo="releases"
             showSeeBtn
           />
         </LowerPageContainer>
+        <MailingList />
       </motion.div>
     </>
   );
@@ -78,7 +89,7 @@ export const query = graphql`
     }
     newReleases: allSanityAlbums(
       sort: { order: DESC, fields: releaseDate }
-      limit: 5
+      limit: 6
     ) {
       nodes {
         name
@@ -109,11 +120,14 @@ export const query = graphql`
         }
       }
       sort: { fields: releaseDate, order: DESC }
-      limit: 5
+      limit: 6
     ) {
       nodes {
         name
         id
+        artist {
+          name
+        }
         slug {
           current
         }
@@ -130,11 +144,42 @@ export const query = graphql`
       filter: {
         genre: { elemMatch: { slug: { current: { eq: "deep-house" } } } }
       }
-      sort: { fields: releaseDate, order: DESC } # limit: 5
+      sort: { fields: releaseDate, order: DESC }
+      limit: 6
     ) {
       nodes {
         name
         id
+        artist {
+          name
+        }
+        slug {
+          current
+        }
+        image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+    }
+    newTrance: allSanityAlbums(
+      filter: {
+        genre: {
+          elemMatch: { slug: { current: { eq: "progressive-trance" } } }
+        }
+      }
+      sort: { fields: releaseDate, order: DESC }
+      limit: 6
+    ) {
+      nodes {
+        name
+        id
+        artist {
+          name
+        }
         slug {
           current
         }

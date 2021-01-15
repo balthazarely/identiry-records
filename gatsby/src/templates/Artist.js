@@ -79,7 +79,7 @@ export default function SingleArtistPage({ data }) {
             <div>
               <iframe
                 title="artist-playlist"
-                src="https://open.spotify.com/embed/artist/2bqGPuC8kDCTLWieGOyWxu"
+                src={`https://open.spotify.com/embed/artist/${data.artist.artistSpotify}`}
                 width="300"
                 height="380"
                 frameBorder="0"
@@ -92,7 +92,7 @@ export default function SingleArtistPage({ data }) {
           <AnimateOnScroll>
             <AlbumSlider
               allAlbums={data.album.nodes}
-              sectionTitle={`More by ${data.artist.name}`}
+              sectionTitle={`Releases by ${data.artist.name}`}
               routeTo="releases"
             />
           </AnimateOnScroll>
@@ -107,6 +107,7 @@ export const query = graphql`
     artist: sanityArtist(slug: { current: { eq: $slug } }) {
       name
       bio
+      artistSpotify
       image {
         asset {
           fluid(maxWidth: 1200) {

@@ -9,14 +9,6 @@ export const pageTransition = {
       ease: [0.43, 0.13, 0.23, 0.96],
     },
   },
-  // exit: {
-  //   y: 20,
-  //   opacity: 0,
-  //   transition: {
-  //     duration: 0.15,
-  //     transition: { staggerChildren: 0.07, ease: [0.43, 0.13, 0.23, 0.96] },
-  //   },
-  // },
 };
 
 export const recordTransition = {

@@ -77,6 +77,7 @@ const GlobalStyles = createGlobalStyle`
     background: #EC4D37;
     overflow: hidden;
     color: white;
+    border-radius: 5px;
   }
 
   .carousel-blur {

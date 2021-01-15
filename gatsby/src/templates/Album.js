@@ -15,6 +15,7 @@ const AlbumGrid = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
+    margin: 0px 10px;
   }
 `;
 

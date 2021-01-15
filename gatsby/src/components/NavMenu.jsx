@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { motion } from 'framer-motion';
@@ -7,7 +6,6 @@ import {
   FaUserCircle,
   FaHeadphonesAlt,
   FaCompactDisc,
-  FaMusic,
   FaHome,
 } from 'react-icons/fa';
 import { MdFingerprint } from 'react-icons/md';
@@ -112,10 +110,6 @@ const Nav = styled(motion.nav)`
   z-index: 60;
   overflow: hidden;
   cursor: pointer;
-
-  @media (max-width: 768px) {
-    /* left: -60px; */
-  }
 `;
 
 const LinkWrapper = styled(motion.div)`
@@ -129,7 +123,6 @@ const LinkWrapper = styled(motion.div)`
   flex-direction: column;
   overflow: hidden;
   div {
-    /* margin: 1.5rem 0 0 4rem; */
     margin-left: 8px;
     height: 20px;
     font-size: 1.5rem;
@@ -165,11 +158,7 @@ const LogoWrapper = styled(motion.div)`
   top: 25px;
   height: 40px;
   width: 57px;
-  /* display: flex;
-  justify-content: center; */
-  /* flex-direction: column; */
   cursor: pointer;
-  /* z-index: 20000; */
 `;
 
 const LogoNameWrapper = styled(motion.div)`
@@ -254,7 +243,11 @@ export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
         >
           <MobileLogoWrapper style={{ color: 'white' }}>
             <div className="mobile-logo">
-              <MdFingerprint />
+              <MdFingerprint
+                style={{
+                  color: '#EC4D37',
+                }}
+              />
             </div>
             <div>
               <motion.div className="logo-title">IDENTITY</motion.div>
@@ -281,8 +274,8 @@ export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
         windowSize={windowSize.width}
         animate={navOpen ? 'show' : 'hidden'}
         variants={variants}
-        onMouseEnter={windowSize.width > 768 ? () => toggleNavMenu() : ''}
-        onMouseLeave={windowSize.width > 768 ? () => toggleNavMenu() : ''}
+        onMouseEnter={windowSize.width > 768 ? () => toggleNavMenu() : null}
+        onMouseLeave={windowSize.width > 768 ? () => toggleNavMenu() : null}
       >
         <Link
           onClick={windowSize.width < 768 ? () => toggleNavMenu() : ''}

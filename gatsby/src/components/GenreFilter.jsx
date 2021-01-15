@@ -9,10 +9,10 @@ const GenreContainer = styled(motion.div)`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
-  max-width: 500px;
   margin-left: auto;
   margin-right: 0;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 `;
 
 const GenreItem = styled(motion.div)`
@@ -54,7 +54,6 @@ export default function GenreFilter({ location }) {
     }
   `);
   const pageLocation = location.pathname.split('/')[2];
-  console.log(pageLocation);
 
   return (
     <GenreContainer>

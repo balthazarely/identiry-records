@@ -17,7 +17,7 @@ const MyFooter = styled(motion.footer)`
   color: white;
   width: 100%;
   height: 130px;
-  margin-top: 50px;
+  /* margin-top: 50px;   */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   @media (max-width: 540px) {
@@ -54,10 +54,10 @@ const Links = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 5px 15px;
-  font-size: 13px;
+  font-size: 10px;
   font-family: Rubik;
   font-weight: 300;
-  text-align: center;
+  text-align: left;
   @media (max-width: 768px) {
     font-size: 11px;
   }
@@ -96,7 +96,7 @@ const MobileLogoWrapper = styled.div`
     text-decoration: none;
   }
 `;
-export default function Footer() {
+export default function Footer({}) {
   return (
     <MyFooter
       className="footer"

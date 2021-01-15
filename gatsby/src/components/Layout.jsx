@@ -56,6 +56,7 @@ export default function Layout({ children }) {
     },
     show: {
       paddingLeft: 190,
+      // paddingLeft: 60,
       transition: {
         duration: 0.2,
       },

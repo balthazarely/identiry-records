@@ -31,7 +31,7 @@ var _default = {
     resolve: 'gatsby-plugin-web-font-loader',
     options: {
       google: {
-        families: ['Rubik:300,800']
+        families: ['Rubik:300,500,800']
       }
     }
   }]

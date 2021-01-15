@@ -127,15 +127,8 @@ export default function artists({ data, location }) {
     pageLocation = 'All';
   }
 
-  // const convertSlugToTitle = (pathName) => {
-  //   if (pathName === 'All') {
-  //     return '';
-  //   }
-  //   return titleCase(pathName.replaceAll('-', ' '));
-  // };
-
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       <GenreContainer>
         <GenreFilter location={location} />
       </GenreContainer>
@@ -172,6 +165,7 @@ export const query = graphql`
   query AlbumQuery($genre: [String]) {
     allAlbums: allSanityAlbums(
       filter: { genre: { elemMatch: { slug: { current: { in: $genre } } } } }
+      sort: { fields: name, order: ASC }
     ) {
       nodes {
         name

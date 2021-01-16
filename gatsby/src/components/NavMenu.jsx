@@ -7,6 +7,7 @@ import {
   FaHeadphonesAlt,
   FaCompactDisc,
   FaHome,
+  FaGithub,
 } from 'react-icons/fa';
 import { MdFingerprint } from 'react-icons/md';
 
@@ -114,7 +115,7 @@ const Nav = styled(motion.nav)`
 
 const LinkWrapper = styled(motion.div)`
   position: absolute;
-  top: 170px;
+  top: 172px;
   width: 130px;
   left: 42px;
   height: 140px;
@@ -197,10 +198,50 @@ const MainLogo = styled(motion.div)`
   justify-content: center;
 `;
 
-const LinkIcon = styled(motion.icon)`
+const LinkIcon = styled(motion.i)`
   color: #8d8d8d;
   height: 20px;
   cursor: pointer;
+`;
+
+const MyLinks = styled(motion.i)`
+  position: absolute;
+  bottom: 50px;
+  height: 20px;
+  cursor: pointer;
+  left: 20px;
+  a {
+    color: #8d8d8d;
+  }
+`;
+
+const MyLinkWrapper = styled(motion.div)`
+  position: absolute;
+  bottom: 48px;
+  width: 130px;
+  left: 42px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  overflow: hidden;
+  div {
+    margin-left: 8px;
+    height: 20px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    a {
+      color: #8d8d8d;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 14px;
+      font-family: Rubik;
+      font-weight: 800;
+      &:hover {
+        color: white;
+      }
+    }
+  }
 `;
 
 export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
@@ -209,8 +250,6 @@ export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
       width: windowSize.width < 768 ? 0 : 60,
       transition: {
         duration: 0.2,
-        // delay: 0.2,
-        // when: "afterChildren",
         staggerChildren: 0.01,
         staggerDirection: -1,
       },
@@ -361,20 +400,25 @@ export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
             </Link>
           </motion.div>
         </LinkWrapper>
+        <MyLinks>
+          <a
+            target="BLANK"
+            href="https://github.com/balthazarely/identity-records"
+          >
+            <FaGithub className="icon" />
+          </a>
+        </MyLinks>
+        <MyLinkWrapper>
+          <motion.div variants={item}>
+            <a
+              target="BLANK"
+              href="https://github.com/balthazarely/identity-records"
+            >
+              Github
+            </a>
+          </motion.div>
+        </MyLinkWrapper>
       </Nav>
     </div>
   );
 }
-
-// export const query = graphql`
-//   query GenreQuery {
-//     allGenres: allSanityGenre {
-//       nodes {
-//         name
-//         slug {
-//           current
-//         }
-//       }
-//     }
-//   }
-// `;

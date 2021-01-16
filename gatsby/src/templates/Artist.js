@@ -53,7 +53,6 @@ const ArtistInfomationWrapper = styled(motion.div)`
 `;
 
 export default function SingleArtistPage({ data }) {
-  console.log(data);
   return (
     <>
       <SEO title={`${data.artist.name}`} />

@@ -27,7 +27,6 @@ const NewReleaseTag = styled(motion.div)`
   position: absolute;
   bottom: 0;
   right: 0;
-  /* transform: rotate(90deg) translate(50%, -50%); */
   z-index: 1000;
   background: #ec4d37;
   color: white;
@@ -47,19 +46,9 @@ const albumAnimation = {
   },
   exit: { y: 70, opacity: 0 },
 };
-const lineAnimation = {
-  initial: { width: 0, opacity: 1 },
-  enter: {
-    width: '100%',
-    opacity: 1,
-    transition: { duration: 1 },
-  },
-  exit: { width: 0, opacity: 1 },
-};
 
 class AnotherSlider extends Component {
   render() {
-    console.log(this.props);
     const { allCovers } = this.props;
 
     return (
@@ -80,11 +69,11 @@ class AnotherSlider extends Component {
             .slice(0)
             .reverse()
             .map((certainCover) => (
-              <div className="image-container">
+              <div className="image-container" key={certainCover.id}>
                 <NewReleaseTag>New Release</NewReleaseTag>
 
                 <AniLink
-                  // to={`/releases/${this.props.slug.current}`}
+                  to={`/releases/${certainCover.slug.current}`}
                   cover
                   top="exit"
                   bg="#EC4D37"
@@ -97,7 +86,6 @@ class AnotherSlider extends Component {
                       height: '100%',
                     }}
                     fluid={certainCover.image.asset.fluid}
-                    backgroundColor="red"
                   />
                   <HeadlineText variants={albumAnimation}>
                     <motion.h1

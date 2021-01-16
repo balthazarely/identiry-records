@@ -74,7 +74,6 @@ const GenreName = styled(motion.div)`
 const ImageWrapper = styled.div``;
 
 export default function SingleAlbumPage({ data }) {
-  console.log(data);
   return (
     <>
       <SEO title={`${data.album.name}`} />

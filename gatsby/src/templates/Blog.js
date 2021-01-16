@@ -109,7 +109,6 @@ const BlogPost = styled(motion.div)`
 `;
 
 export default function SingleAlbumPage({ data }) {
-  console.log(data);
   return (
     <>
       <SEO title={`${data.album.title}`} />

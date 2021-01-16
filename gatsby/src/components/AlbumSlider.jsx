@@ -17,7 +17,7 @@ const TitleWrapper = styled(motion.div)`
   justify-content: space-between;
   margin: 8px 0;
 `;
-const Title = styled(motion.h3)`
+const Title = styled(motion.div)`
   color: white;
   margin-left: 0px;
 `;

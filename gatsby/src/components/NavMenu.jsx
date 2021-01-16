@@ -114,10 +114,10 @@ const Nav = styled(motion.nav)`
 
 const LinkWrapper = styled(motion.div)`
   position: absolute;
-  top: 150px;
+  top: 170px;
   width: 130px;
   left: 42px;
-  height: 170px;
+  height: 140px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -144,9 +144,9 @@ const LinkWrapper = styled(motion.div)`
 
 const IconLinkWrapper = styled(motion.div)`
   position: absolute;
-  top: 149px;
+  top: 169px;
   left: 20px;
-  height: 170px;
+  height: 140px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -314,9 +314,6 @@ export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
           <LinkIcon>
             <FaHeadphonesAlt className="icon" />
           </LinkIcon>
-          <LinkIcon>
-            <FaCompactDisc className="icon" />
-          </LinkIcon>
         </IconLinkWrapper>
 
         <LinkWrapper>
@@ -358,17 +355,9 @@ export default function NavMenu({ toggleNavMenu, navOpen, windowSize }) {
           <motion.div variants={item}>
             <Link
               onClick={windowSize.width < 768 ? () => toggleNavMenu() : ''}
-              to="/"
+              to="/blog"
             >
               Blog
-            </Link>
-          </motion.div>
-          <motion.div variants={item}>
-            <Link
-              onClick={windowSize.width < 768 ? () => toggleNavMenu() : ''}
-              to="/"
-            >
-              Submit Demo
             </Link>
           </motion.div>
         </LinkWrapper>

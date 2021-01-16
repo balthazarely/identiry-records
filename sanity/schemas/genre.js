@@ -1,10 +1,10 @@
-import { BsMusicNoteBeamed } from 'react-icons/md';
+import { MusicNoteIcon } from 'react-icons/md';
 
 export default {
   name: 'genre',
   title: 'Genre',
   type: 'document',
-  icon: BsMusicNoteBeamed,
+  icon: MusicNoteIcon,
   fields: [
     {
       name: 'name',

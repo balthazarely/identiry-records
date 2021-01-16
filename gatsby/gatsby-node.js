@@ -75,10 +75,36 @@ async function turnGenresIntoPages({ graphql, actions }) {
   });
 }
 
+async function turnBlogsIntoPages({ graphql, actions }) {
+  const blogTemplate = path.resolve('./src/templates/Blog.js');
+  const { data } = await graphql(`
+    query {
+      blog: allSanityBlog {
+        nodes {
+          title
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+  data.blog.nodes.forEach((blog) => {
+    actions.createPage({
+      path: `blog/${blog.slug.current}`,
+      component: blogTemplate,
+      context: {
+        slug: blog.slug.current,
+      },
+    });
+  });
+}
+
 export async function createPages(params) {
   await Promise.all([
     turnArtistsIntoPages(params),
     turnAlbumsIntoPages(params),
     turnGenresIntoPages(params),
+    turnBlogsIntoPages(params),
   ]);
 }

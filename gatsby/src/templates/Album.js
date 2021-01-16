@@ -7,6 +7,7 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import MusicPlayer from '../components/MusicPlayer';
 import { artistPageTransition } from '../animations/animation';
 import { LowerPageContainer } from '../styles/PageElements';
+import SEO from '../components/SEO';
 
 const AlbumGrid = styled(motion.div)`
   margin: 100px 10px;
@@ -75,46 +76,49 @@ const ImageWrapper = styled.div``;
 export default function SingleAlbumPage({ data }) {
   console.log(data);
   return (
-    <motion.div initial="initial" animate="enter" exit="exit">
-      <LowerPageContainer>
-        <AlbumGrid variants={artistPageTransition}>
-          <ImageWrapper>
-            <Img
-              fluid={data.album.image.asset.fluid}
-              className="artist-image"
-            />
-          </ImageWrapper>
-          <AlbumDetails variants={artistPageTransition}>
-            <motion.h1>{data.album.name}</motion.h1>
-            {data.album.genre.map((genre) => (
-              <GenreName>{genre.name}</GenreName>
-            ))}
-            {data.album.artist.map((artist) => (
-              <AniLink
-                to={`/artists/${artist.slug.current}`}
-                cover
-                bg="#EA261A"
-                duration={0.5}
-                style={{ textDecoration: 'none' }}
-              >
-                <ArtistWrapper>
-                  <MiniArtistImage>
-                    <Img
-                      style={{ height: '100%' }}
-                      fluid={artist.image.asset.fluid}
-                    />
-                  </MiniArtistImage>
-                  <h6>{artist.name}</h6>
-                </ArtistWrapper>
-              </AniLink>
-            ))}
+    <>
+      <SEO title={`${data.album.name}`} />
+      <motion.div initial="initial" animate="enter" exit="exit">
+        <LowerPageContainer>
+          <AlbumGrid variants={artistPageTransition}>
+            <ImageWrapper>
+              <Img
+                fluid={data.album.image.asset.fluid}
+                className="artist-image"
+              />
+            </ImageWrapper>
+            <AlbumDetails variants={artistPageTransition}>
+              <motion.h1>{data.album.name}</motion.h1>
+              {data.album.genre.map((genre) => (
+                <GenreName>{genre.name}</GenreName>
+              ))}
+              {data.album.artist.map((artist) => (
+                <AniLink
+                  to={`/artists/${artist.slug.current}`}
+                  cover
+                  bg="#EA261A"
+                  duration={0.5}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <ArtistWrapper>
+                    <MiniArtistImage>
+                      <Img
+                        style={{ height: '100%' }}
+                        fluid={artist.image.asset.fluid}
+                      />
+                    </MiniArtistImage>
+                    <h6>{artist.name}</h6>
+                  </ArtistWrapper>
+                </AniLink>
+              ))}
 
-            <p>Released {data.album.releaseDate}</p>
-            <MusicPlayer spotifyURL={data.album.spotifyURI} height="320" />
-          </AlbumDetails>
-        </AlbumGrid>
-      </LowerPageContainer>
-    </motion.div>
+              <p>Released {data.album.releaseDate}</p>
+              <MusicPlayer spotifyURL={data.album.spotifyURI} height="320" />
+            </AlbumDetails>
+          </AlbumGrid>
+        </LowerPageContainer>
+      </motion.div>
+    </>
   );
 }
 

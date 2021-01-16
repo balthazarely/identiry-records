@@ -107,17 +107,50 @@ function turnGenresIntoPages(_ref5) {
   });
 }
 
-function createPages(params) {
-  return regeneratorRuntime.async(function createPages$(_context4) {
+function turnBlogsIntoPages(_ref7) {
+  var graphql, actions, blogTemplate, _ref8, data;
+
+  return regeneratorRuntime.async(function turnBlogsIntoPages$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _context4.next = 2;
-          return regeneratorRuntime.awrap(Promise.all([turnArtistsIntoPages(params), turnAlbumsIntoPages(params), turnGenresIntoPages(params)]));
+          graphql = _ref7.graphql, actions = _ref7.actions;
+          blogTemplate = _path["default"].resolve('./src/templates/Blog.js');
+          _context4.next = 4;
+          return regeneratorRuntime.awrap(graphql("\n    query {\n      blog: allSanityBlog {\n        nodes {\n          title\n          slug {\n            current\n          }\n        }\n      }\n    }\n  "));
+
+        case 4:
+          _ref8 = _context4.sent;
+          data = _ref8.data;
+          data.blog.nodes.forEach(function (blog) {
+            actions.createPage({
+              path: "blog/".concat(blog.slug.current),
+              component: blogTemplate,
+              context: {
+                slug: blog.slug.current
+              }
+            });
+          });
+
+        case 7:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+}
+
+function createPages(params) {
+  return regeneratorRuntime.async(function createPages$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return regeneratorRuntime.awrap(Promise.all([turnArtistsIntoPages(params), turnAlbumsIntoPages(params), turnGenresIntoPages(params), turnBlogsIntoPages(params)]));
 
         case 2:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
     }
   });

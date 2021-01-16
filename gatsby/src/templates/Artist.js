@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { artistPageTransition } from '../animations/animation';
 import AnimateOnScroll from '../components/AnimateOnScroll';
 import AlbumSlider from '../components/AlbumSlider';
+import SEO from '../components/SEO';
 
 const ArtistGrid = styled.div`
   margin: 0 auto;
@@ -54,51 +55,54 @@ const ArtistInfomationWrapper = styled(motion.div)`
 export default function SingleArtistPage({ data }) {
   console.log(data);
   return (
-    <motion.div initial="initial" animate="enter" exit="exit">
-      <ArtistGrid>
-        <div>
-          <motion.div variants={artistPageTransition}>
-            <BackgroundImage
-              fluid={data.artist.image.asset.fluid}
-              backgroundColor="#040e18"
-              style={{ backgroundPosition: 'center top;' }}
-              className="artist-cover-image"
+    <>
+      <SEO title={`${data.artist.name}`} />
+      <motion.div initial="initial" animate="enter" exit="exit">
+        <ArtistGrid>
+          <div>
+            <motion.div variants={artistPageTransition}>
+              <BackgroundImage
+                fluid={data.artist.image.asset.fluid}
+                backgroundColor="#040e18"
+                style={{ backgroundPosition: 'center top;' }}
+                className="artist-cover-image"
+              >
+                <ArtistHeader variants={artistPageTransition}>
+                  {data.artist.name}
+                </ArtistHeader>
+
+                <Overlay />
+              </BackgroundImage>
+            </motion.div>
+            <ArtistInfomationWrapper
+              variants={artistPageTransition}
+              style={{ color: 'white' }}
             >
-              <ArtistHeader variants={artistPageTransition}>
-                {data.artist.name}
-              </ArtistHeader>
+              <p>{data.artist.bio}</p>
+              <div>
+                <iframe
+                  title="artist-playlist"
+                  src={`https://open.spotify.com/embed/artist/${data.artist.artistSpotify}`}
+                  width="300"
+                  height="380"
+                  frameBorder="0"
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                />
+              </div>
+            </ArtistInfomationWrapper>
 
-              <Overlay />
-            </BackgroundImage>
-          </motion.div>
-          <ArtistInfomationWrapper
-            variants={artistPageTransition}
-            style={{ color: 'white' }}
-          >
-            <p>{data.artist.bio}</p>
-            <div>
-              <iframe
-                title="artist-playlist"
-                src={`https://open.spotify.com/embed/artist/${data.artist.artistSpotify}`}
-                width="300"
-                height="380"
-                frameBorder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
+            <AnimateOnScroll>
+              <AlbumSlider
+                allAlbums={data.album.nodes}
+                sectionTitle={`Releases by ${data.artist.name}`}
+                routeTo="releases"
               />
-            </div>
-          </ArtistInfomationWrapper>
-
-          <AnimateOnScroll>
-            <AlbumSlider
-              allAlbums={data.album.nodes}
-              sectionTitle={`Releases by ${data.artist.name}`}
-              routeTo="releases"
-            />
-          </AnimateOnScroll>
-        </div>
-      </ArtistGrid>
-    </motion.div>
+            </AnimateOnScroll>
+          </div>
+        </ArtistGrid>
+      </motion.div>
+    </>
   );
 }
 

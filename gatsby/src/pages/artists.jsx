@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { motion } from 'framer-motion';
 import { pageTransition, TitleHover } from '../animations/animation';
+import SEO from '../components/SEO';
 
 const ArtistList = styled(motion.div)`
   display: grid;
@@ -75,6 +76,7 @@ const PageTitle = styled(motion.div)`
   color: white;
   margin-bottom: 10px;
   margin-left: 5px;
+  margin-top: 20px;
 `;
 
 function SingleArtistList({ artist }) {
@@ -84,6 +86,8 @@ function SingleArtistList({ artist }) {
   }
   return (
     <>
+      <SEO title="Artists" />
+
       <ArtistTile variants={TitleHover} whileHover="hover">
         <AniLink
           to={`/artists/${artist.slug.current}`}

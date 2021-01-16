@@ -7,6 +7,7 @@ import { LowerPageContainer } from '../styles/PageElements';
 import AnotherSlider from '../components/AnotherSlider';
 import Welcome from '../components/Welcome';
 import MailingList from '../components/MailingList';
+import SEO from '../components/SEO';
 
 export default function HomePage({ data }) {
   const allCovers = data.allCovers.nodes;
@@ -20,6 +21,8 @@ export default function HomePage({ data }) {
 
   return (
     <>
+      <SEO title="Home" />
+
       <motion.div
         className="w-full"
         initial="initial"

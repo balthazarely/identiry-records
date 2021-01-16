@@ -76,43 +76,46 @@ class AnotherSlider extends Component {
           transitionTime={750}
           interval={8000}
         >
-          {allCovers.map((certainCover) => (
-            <div className="image-container">
-              <NewReleaseTag>New Release</NewReleaseTag>
+          {allCovers
+            .slice(0)
+            .reverse()
+            .map((certainCover) => (
+              <div className="image-container">
+                <NewReleaseTag>New Release</NewReleaseTag>
 
-              <AniLink
-                // to={`/releases/${this.props.slug.current}`}
-                cover
-                top="exit"
-                bg="#EC4D37"
-                duration={0.4}
-                style={{ textDecoration: 'none' }}
-              >
-                <BackgroundImage
-                  Tag="section"
-                  style={{
-                    height: '100%',
-                  }}
-                  fluid={certainCover.image.asset.fluid}
-                  backgroundColor="red"
-                />
-                <HeadlineText variants={albumAnimation}>
-                  <motion.h1
-                    variants={albumAnimation}
-                    style={{ color: 'white' }}
-                  >
-                    {certainCover.name}
-                  </motion.h1>
-                  <motion.h3
-                    variants={albumAnimation}
-                    style={{ color: 'white' }}
-                  >
-                    {certainCover.release}
-                  </motion.h3>
-                </HeadlineText>
-              </AniLink>
-            </div>
-          ))}
+                <AniLink
+                  // to={`/releases/${this.props.slug.current}`}
+                  cover
+                  top="exit"
+                  bg="#EC4D37"
+                  duration={0.4}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <BackgroundImage
+                    Tag="section"
+                    style={{
+                      height: '100%',
+                    }}
+                    fluid={certainCover.image.asset.fluid}
+                    backgroundColor="red"
+                  />
+                  <HeadlineText variants={albumAnimation}>
+                    <motion.h1
+                      variants={albumAnimation}
+                      style={{ color: 'white' }}
+                    >
+                      {certainCover.name}
+                    </motion.h1>
+                    <motion.h3
+                      variants={albumAnimation}
+                      style={{ color: 'white' }}
+                    >
+                      {certainCover.release}
+                    </motion.h3>
+                  </HeadlineText>
+                </AniLink>
+              </div>
+            ))}
         </Carousel>
       </HeaderContainer>
     );

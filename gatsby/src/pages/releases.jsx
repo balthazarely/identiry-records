@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import GenreFilter from '../components/GenreFilter';
 import { pageTransition, TitleHover } from '../animations/animation';
 import { titleCase } from '../utils/UtilFunctions';
+import SEO from '../components/SEO';
 
 const ArtistList = styled(motion.div)`
   display: grid;
@@ -96,6 +97,7 @@ function SingleArtistList({ album }) {
   }
   return (
     <>
+      <SEO title="Releases" />
       <ArtistTile variants={TitleHover} whileHover="hover">
         <AniLink
           to={`/releases/${album.slug.current}`}

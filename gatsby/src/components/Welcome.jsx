@@ -8,6 +8,7 @@ const MailingListContainer = styled(motion.div)`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: 40fr 60fr;
+  overflow: hidden;
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
     margin: 0px 10px;
@@ -50,12 +51,15 @@ const MailingListContainer = styled(motion.div)`
 const Container = styled(motion.div)`
   width: 100%;
   margin: 60px 0;
+  overflow: hidden;
+  height: 100%;
 `;
 
 const Rule = styled(motion.div)`
   width: 100%;
   height: 2px;
   background: #888888;
+  overflow: hidden;
 `;
 
 const containerAnimation = {
@@ -123,6 +127,7 @@ export default function Welcome() {
             animate={controls}
             initial="initial"
             variants={containerAnimation}
+            style={{ overflow: 'hidden' }}
           >
             <motion.h1 variants={containerAnimation}>
               The sound of <span>Identity Records</span>

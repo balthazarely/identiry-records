@@ -24,6 +24,7 @@ export default function HomePage({ data }) {
       <SEO title="Home" />
 
       <motion.div
+        style={{ overflow: 'hidden' }}
         className="w-full"
         initial="initial"
         animate="enter"

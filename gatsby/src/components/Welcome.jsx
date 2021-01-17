@@ -103,7 +103,7 @@ export default function Welcome() {
     if (inView) {
       controls.start('enter');
     } else if (!inView) {
-      controls.start('exit');
+      // controls.start('exit');
     }
   }, [controls, inView]);
 

@@ -81,7 +81,7 @@ export default function MailingList() {
     if (inView) {
       controls.start('enter');
     } else if (!inView) {
-      controls.start('exit');
+      // controls.start('exit');
     }
   }, [controls, inView]);
 
